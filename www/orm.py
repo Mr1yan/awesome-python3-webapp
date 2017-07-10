@@ -3,7 +3,6 @@
 import asyncio
 import logging
 import aiomysql
-from aiomysql.connection import connect
 
 def log(sql,args=()):
     logging.info('SQL:%s'%sql)
@@ -131,7 +130,7 @@ class ModelMetaclass(type):
 
 class Model(dict,metaclass=ModelMetaclass):
         def __init__(self,**kw):
-            super().__init__(**kw)
+            super(Model, self).__init__(**kw)
         def __getattr__(self, key):
             try:
                 return self[key]
@@ -170,7 +169,7 @@ class Model(dict,metaclass=ModelMetaclass):
                     sql.append('?')
                     args.append(limit)
                 elif isinstance(limit,tuple) and len(limit)==2:
-                    sql.append('?','?')
+                    sql.append('?, ?')
                     args.extend(limit)
                 else:
                     raise ValueError('Invalid limit value:%s'%str(limit))

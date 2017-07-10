@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>model-view-controler</title>
+</head>
+<body>
+    <h1>All users</h1>
+    {% for u in user %}
+    <p>{{u.name}}/{{u.mail}}</p>
+    {% endfor %}
+</body>
+</html>
