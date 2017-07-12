@@ -6,7 +6,7 @@ from jinja2.environment import Environment
 from jinja2.loaders import FileSystemLoader
 from coreweb import add_routes, add_static
 
-from www import orm
+import orm
 
 __author__='Yanwm'
 '''
