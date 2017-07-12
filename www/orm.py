@@ -24,14 +24,12 @@ async def create_pool(loop,**kw):
     )
 
 async def destory_pool():
-    global __pool
     if __pool is not None:
         __pool.close()
         await __pool.wait_closed()
 
 async def select(sql,args,size=None):
     log(sql,args)
-    global __pool
     async with __pool.get() as conn:
         async with conn.cursor(aiomysql.DictCursor) as cur:
             await cur.execute(sql.replace('?','%s'),args or ())
